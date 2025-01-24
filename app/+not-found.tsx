@@ -1,6 +1,6 @@
 import { Link, Stack } from "expo-router";
 import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-ui-lib";
+import { Colors, Text } from "react-native-ui-lib";
 export default function NotFoundScreen() {
   return (
     <View>
@@ -25,5 +25,8 @@ const styles = StyleSheet.create({
   link: {
     marginTop: 15,
     paddingVertical: 15,
+    padding: 12,
+    borderRadius: 12,
+    backgroundColor: Colors.green60,
   },
 });

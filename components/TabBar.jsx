@@ -1,6 +1,13 @@
 import { PlatformPressable } from "@react-navigation/elements";
 import { useLinkBuilder } from "@react-navigation/native";
-import { HomeIcon, Library, Search } from "lucide-react-native";
+import {
+  Binoculars,
+  HomeIcon,
+  ListMusic,
+  Music,
+  Search,
+  User2,
+} from "lucide-react-native";
 import { StyleSheet } from "react-native";
 import { Colors, Text } from "react-native-ui-lib";
 import View from "react-native-ui-lib/view";
@@ -65,8 +72,16 @@ export default function TabBar({ state, descriptors, navigation }) {
                 />
               ) : route.name === "search" ? (
                 <Search color={isFocused ? Colors.primary : Colors.grey30} />
-              ) : route.name === "collection" ? (
-                <Library color={isFocused ? Colors.primary : Colors.grey30} />
+              ) : route.name === "profile" ? (
+                <User2 color={isFocused ? Colors.primary : Colors.grey30} />
+              ) : route.name === "songs" ? (
+                <Music color={isFocused ? Colors.primary : Colors.grey30} />
+              ) : route.name === "playlists" ? (
+                <ListMusic color={isFocused ? Colors.primary : Colors.grey30} />
+              ) : route.name === "discover" ? (
+                <Binoculars
+                  color={isFocused ? Colors.primary : Colors.grey30}
+                />
               ) : (
                 label
               )}
