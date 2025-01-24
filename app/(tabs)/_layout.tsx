@@ -1,23 +1,25 @@
-import { Tabs } from "expo-router";
-import React from "react";
+import SearchHeader from "@/components/Headers/SearchHeader";
+import { searchAtom } from "@/lib/atoms";
 import themeInit from "@/lib/themeInit";
-import { auth_token } from "@/constants";
-import { setBearerToken } from "@/lib/axios";
+import { Tabs } from "expo-router";
+import { useAtom } from "jotai";
+import React from "react";
 
 export default function TabLayout() {
   themeInit();
-  setBearerToken(auth_token);
-
+  const [search] = useAtom(searchAtom);
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
+    <Tabs>
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="search"
+        options={{
+          header: () => <SearchHeader />,
         }}
       />
     </Tabs>

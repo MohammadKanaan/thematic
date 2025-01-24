@@ -1,8 +1,8 @@
 import axiosInstance from "@/lib/axios";
-import { User } from "@/types";
-import { userSchema } from "@/types/schemas";
+import { CurrentUser } from "@/types";
+import { currentUserSchema } from "@/types/schemas";
 
-export async function login(auth_token: string): Promise<User | null> {
+export async function login(auth_token: string): Promise<CurrentUser | null> {
   try {
     const res = (
       await axiosInstance.get("account", {
@@ -11,7 +11,7 @@ export async function login(auth_token: string): Promise<User | null> {
         },
       })
     ).data;
-    return userSchema.parse(res);
+    return currentUserSchema.parse(res);
   } catch (error) {
     console.error(error);
     return null;

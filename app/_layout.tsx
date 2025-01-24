@@ -1,11 +1,12 @@
+import { asyncStoragePersister, queryClient } from "@/lib/react-query";
+import { PortalHost, PortalProvider } from "@gorhom/portal";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
-import { asyncStoragePersister, queryClient } from "@/lib/react-query";
-import { QueryClientProvider } from "@tanstack/react-query";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -26,15 +27,21 @@ export default function RootLayout() {
   }
 
   return (
-    <PersistQueryClientProvider
-      client={queryClient}
-      persistOptions={{ persister: asyncStoragePersister }}
-    >
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-        <Stack.Screen name="auth" options={{ headerShown: false }} />
-      </Stack>
-    </PersistQueryClientProvider>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <PersistQueryClientProvider
+          client={queryClient}
+          persistOptions={{ persister: asyncStoragePersister }}
+        >
+          <PortalProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+              <Stack.Screen name="auth" options={{ headerShown: false }} />
+            </Stack>
+          </PortalProvider>
+        </PersistQueryClientProvider>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
