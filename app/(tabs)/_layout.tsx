@@ -27,6 +27,12 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="songs/[id]"
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
         name="search"
         options={{
           header: () => <SearchHeader />,

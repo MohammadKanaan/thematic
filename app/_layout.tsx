@@ -1,6 +1,8 @@
+import { login } from "@/actions/auth";
 import { asyncStoragePersister, queryClient } from "@/lib/react-query";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import { PortalHost, PortalProvider } from "@gorhom/portal";
+import { PortalProvider } from "@gorhom/portal";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -18,6 +20,11 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
+    AsyncStorage.getItem("auth_token").then((data) => {
+      if (!data) return;
+      login(data);
+    });
+
     if (loaded) {
       SplashScreen.hideAsync();
     }

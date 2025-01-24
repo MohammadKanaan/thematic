@@ -13,10 +13,12 @@ export default function HomeScreen() {
     <View flex center>
       <Text text10>Welcome {currentUser?.email}</Text>
       <TouchableOpacity
-        onPress={() => router.push("/profile")}
+        onPress={() => {
+          !!currentUser ? router.push("/profile") : router.push("/auth/login");
+        }}
         style={styles.button}
       >
-        <Text>Account</Text>
+        <Text>{!!currentUser ? "Account" : "Log in"}</Text>
       </TouchableOpacity>
     </View>
   );

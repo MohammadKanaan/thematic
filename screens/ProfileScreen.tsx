@@ -1,5 +1,4 @@
-import Divider from "@/components/Divider";
-import { queryClient } from "@/lib/react-query";
+import { logout } from "@/actions/auth";
 import { CurrentUser } from "@/types";
 import { useRouter } from "expo-router";
 import { ArrowRightCircle, Bookmark, Cog, LogOut } from "lucide-react-native";
@@ -16,7 +15,7 @@ export default function ProfileScreen({
 }) {
   const router = useRouter();
   return (
-    <ScrollView>
+    <ScrollView style={styles.main}>
       <View style={styles.container}>
         <Image
           source={{ uri: currentUser.profile_image_url }}
@@ -69,10 +68,8 @@ export default function ProfileScreen({
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.listElementButton}
-          onPress={() => {
-            queryClient.invalidateQueries({
-              queryKey: ["currentUser"],
-            });
+          onPress={async () => {
+            await logout();
             router.replace("/auth/login");
           }}
         >
@@ -85,6 +82,9 @@ export default function ProfileScreen({
 }
 
 const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     gap: 10,
