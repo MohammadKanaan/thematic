@@ -53,10 +53,7 @@ const LoginScreen: React.FC = () => {
         >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.linkContainer}
-          onPress={() => router.push("/auth/signup")}
-        >
+        <TouchableOpacity style={styles.linkContainer}>
           <Text style={styles.linkText}>
             Don't have an account yet? Sign up
           </Text>

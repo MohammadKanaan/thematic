@@ -1,7 +1,8 @@
 import Divider from "@/components/Divider";
+import { queryClient } from "@/lib/react-query";
 import { CurrentUser } from "@/types";
 import { useRouter } from "expo-router";
-import { ArrowRightCircle, Bookmark, Cog } from "lucide-react-native";
+import { ArrowRightCircle, Bookmark, Cog, LogOut } from "lucide-react-native";
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { Colors, Image, Text } from "react-native-ui-lib";
@@ -27,6 +28,7 @@ export default function ProfileScreen({
       <TouchableOpacity
         style={styles.listElementButton}
         onPress={() => {
+          //@ts-ignore
           router.push("+not-found");
         }}
       >
@@ -36,6 +38,7 @@ export default function ProfileScreen({
       <TouchableOpacity
         style={styles.listElementButton}
         onPress={() => {
+          //@ts-ignore
           router.push("+not-found");
         }}
       >
@@ -45,6 +48,7 @@ export default function ProfileScreen({
       <TouchableOpacity
         style={styles.listElementButton}
         onPress={() => {
+          //@ts-ignore
           router.push("+not-found");
         }}
       >
@@ -54,11 +58,24 @@ export default function ProfileScreen({
       <TouchableOpacity
         style={styles.listElementButton}
         onPress={() => {
+          //@ts-ignore
           router.push("+not-found");
         }}
       >
         <Cog size={24} color={Colors.black} />
         <Text text70>Settings</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.listElementButton}
+        onPress={() => {
+          queryClient.invalidateQueries({
+            queryKey: ["currentUser"],
+          });
+          router.replace("/auth/login");
+        }}
+      >
+        <LogOut size={24} color={Colors.black} />
+        <Text text70>Log Out</Text>
       </TouchableOpacity>
     </View>
   );

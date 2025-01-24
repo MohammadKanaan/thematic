@@ -6,6 +6,7 @@ export const loginSchema = z.object({
 
 // only a snapshot of what the server returns
 export const currentUserSchema = z.object({
+  id: z.number(),
   email: z.string(),
   city: z.string(),
   country: z.string(),
@@ -41,8 +42,8 @@ export const songSchema = z.object({
 export const collectionSchema = z.object({
   id: z.number(),
   name: z.string(),
-  description: z.string(),
-  art_file_url: z.string(),
+  description: z.string().optional().nullable(),
+  art_file_url: z.string().optional().nullable(),
   public: z.boolean(),
   created_at_formatted: z.string(),
   user: userSchema,
