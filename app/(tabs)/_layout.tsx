@@ -21,7 +21,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="songs"
+        name="songs/index"
         options={{
           headerShown: false,
         }}

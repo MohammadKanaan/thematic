@@ -1,6 +1,7 @@
 import getMyPlaylists from "@/actions/playlists";
 import DraggableList from "@/components/DraggableList";
 import MovablePlaylist from "@/components/MovablePlaylist";
+import PlaylistCard from "@/components/PlaylistCard";
 import { SONG_HEIGHT } from "@/constants";
 import useGetUser from "@/hooks/useGetUser";
 import { queuedTracksAtom } from "@/lib/atoms";
@@ -9,19 +10,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import React, { useCallback } from "react";
 import { ActivityIndicator } from "react-native";
+import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { Colors, Text, TouchableOpacity, View } from "react-native-ui-lib";
-
-// @ts-ignore
-const renderItem = ({ item, positions, scrollY, itemsCount }) => (
-  <MovablePlaylist
-    key={item.id || item}
-    id={item.id}
-    playlist={item}
-    positions={positions}
-    scrollY={scrollY}
-    songsCount={itemsCount}
-  />
-);
 
 export default function MyPlaylistsScreen() {
   const currentUserId = useGetUser()?.id;
@@ -58,12 +48,18 @@ export default function MyPlaylistsScreen() {
       {myPlaylists && myPlaylists.length > 0 ? (
         //@ts-ignore
         // FIXME: Not displaying the elements
-        <DraggableList
-          data={myPlaylists}
-          itemHeight={SONG_HEIGHT}
-          renderItem={renderItem}
-          onReorder={handleReorder}
-        />
+        <ScrollView
+          style={{
+            flex: 1,
+          }}
+        >
+          <FlatList
+            data={myPlaylists}
+            renderItem={({ item }) => (
+              <PlaylistCard key={item.id} playlist={item} />
+            )}
+          />
+        </ScrollView>
       ) : (
         <View center gap-10>
           <Text text70>You don't have any playlists</Text>

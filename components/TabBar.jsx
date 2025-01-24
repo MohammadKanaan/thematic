@@ -18,7 +18,11 @@ export default function TabBar({ state, descriptors, navigation }) {
   return (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
-        if (["_sitemap", "+not-found", "auth", "index"].includes(route.name))
+        if (
+          ["_sitemap", "+not-found", "auth", "index", "songs/[id]"].includes(
+            route.name
+          )
+        )
           return null;
 
         const { options } = descriptors[route.key];
