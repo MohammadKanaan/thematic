@@ -30,7 +30,7 @@ export default function UserCard({ user }: { user: User }) {
           <Text text60 numberOfLines={1} marginT-10>
             {user.profile_name}
           </Text>
-          <Text color={Colors.grey50} text70 numberOfLines={1} marginT-10>
+          <Text color={Colors.grey30} text70 numberOfLines={1} marginT-10>
             {capitalizeWords(user.user_type)}
           </Text>
         </View>

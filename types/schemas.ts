@@ -30,8 +30,10 @@ export const songSchema = z.object({
   id: z.number(),
   name: z.string(),
   duration: z.string(),
+  artist_id: z.number(),
   artist_name: z.string(),
   artist_image_url: z.string(),
+  album_id: z.number(),
   album_name: z.string(),
   album_art_url: z.string(),
 });

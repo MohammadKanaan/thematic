@@ -1,4 +1,5 @@
 import { asyncStoragePersister, queryClient } from "@/lib/react-query";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { PortalHost, PortalProvider } from "@gorhom/portal";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { useFonts } from "expo-font";
@@ -33,13 +34,15 @@ export default function RootLayout() {
           client={queryClient}
           persistOptions={{ persister: asyncStoragePersister }}
         >
-          <PortalProvider>
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-              <Stack.Screen name="auth" options={{ headerShown: false }} />
-            </Stack>
-          </PortalProvider>
+          <BottomSheetModalProvider>
+            <PortalProvider>
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="+not-found" />
+                <Stack.Screen name="auth" options={{ headerShown: false }} />
+              </Stack>
+            </PortalProvider>
+          </BottomSheetModalProvider>
         </PersistQueryClientProvider>
       </SafeAreaView>
     </SafeAreaProvider>

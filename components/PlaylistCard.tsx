@@ -32,7 +32,7 @@ export default function PlaylistCard({ playlist }: { playlist: Collection }) {
           <Text text60 numberOfLines={1} marginT-10>
             {playlist.name}
           </Text>
-          <Text color={Colors.grey50} text70 numberOfLines={1} marginT-10>
+          <Text color={Colors.grey30} text70 numberOfLines={1} marginT-10>
             Playlist
           </Text>
         </View>

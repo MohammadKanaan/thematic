@@ -27,7 +27,7 @@ export default function Song({ artist, cover, title }: SongProps) {
           {title}
         </Text>
 
-        <Text color={Colors.grey50} text70 numberOfLines={1} marginT-10>
+        <Text color={Colors.grey20} text70 numberOfLines={1} marginT-10>
           {artist}
         </Text>
       </View>
