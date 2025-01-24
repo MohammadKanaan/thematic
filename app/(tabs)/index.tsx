@@ -1,22 +1,18 @@
-import axiosInstance from "@/lib/axios";
+import useGetUser from "@/hooks/useGetUser";
+import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 import { Button } from "react-native-ui-lib";
 import Text from "react-native-ui-lib/text";
 import View from "react-native-ui-lib/view";
 
-async function getAccountDetails() {
-  const res = await axiosInstance.get(
-    "https://staging-api.hellothematic.com/api/v2/account"
-  );
-  console.log(res.data);
-}
-
 export default function HomeScreen() {
+  const router = useRouter();
+  const currentUser = useGetUser();
   return (
     <View flex center>
-      <Text text10>Welcome</Text>
-      <Button onPress={getAccountDetails}>
-        <Text>Test</Text>
+      <Text text10>Welcome {currentUser?.email}</Text>
+      <Button onPress={() => router.push("/auth/login")}>
+        <Text>Login</Text>
       </Button>
     </View>
   );
