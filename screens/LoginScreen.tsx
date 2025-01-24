@@ -8,6 +8,7 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Colors } from "react-native-ui-lib";
 import View from "react-native-ui-lib/view";
 
 const LoginScreen: React.FC = () => {
@@ -84,8 +85,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    backgroundColor: "white",
-    padding: 15,
+    backgroundColor: Colors.green60,
+    padding: 12,
+    paddingHorizontal: 16,
     borderRadius: 5,
     alignItems: "center",
     marginTop: 20,

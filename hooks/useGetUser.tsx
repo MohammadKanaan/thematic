@@ -1,10 +1,10 @@
 import { queryClient } from "@/lib/react-query";
-import { User } from "@/types";
-import { userSchema } from "@/types/schemas";
+import { CurrentUser } from "@/types";
+import { currentUserSchema } from "@/types/schemas";
 
-export default function useGetUser(): User | null {
+export default function useGetUser(): CurrentUser | null {
   try {
-    return userSchema.parse(queryClient.getQueryData(["currentUser"]));
+    return currentUserSchema.parse(queryClient.getQueryData(["currentUser"]));
   } catch (error) {
     return null;
   }
