@@ -78,7 +78,7 @@ export default function TabBar({ state, descriptors, navigation }) {
                 <Search color={isFocused ? Colors.primary : Colors.grey30} />
               ) : route.name === "profile" ? (
                 <User2 color={isFocused ? Colors.primary : Colors.grey30} />
-              ) : route.name === "songs" ? (
+              ) : route.name === "songs/index" ? (
                 <Music color={isFocused ? Colors.primary : Colors.grey30} />
               ) : route.name === "playlists" ? (
                 <ListMusic color={isFocused ? Colors.primary : Colors.grey30} />
